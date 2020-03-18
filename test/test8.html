@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "utf-8">
+    <title>test8</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+</head>
+<body>
+    <div id = "app">
+        <test></test>
+
+    </div>
+    <div id = "app2">
+            <test></test>
+    
+        </div>
+    
+    <script type= "text/javascript">
+    // Vue.component("test", {
+    //     template:'<h1>自定义控件</h1>'
+    // })
+    var child = {
+        template:'<h1>自定义控件</h1>'
+    }
+
+    Vue.component("test",{
+        template:'<h1>自定义控件</h1>'
+    })
+    var vm = new Vue({
+        el:"#app",
+        // components: {
+        //     "test": child
+        // }
+    })
+
+    var vm2 = new Vue({
+        el:"#app2"
+    })
+    
+    
+    </script>
+
+</body>
+
+
+</html>

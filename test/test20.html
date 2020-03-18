@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title> test20 </title>
+  <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <p>{{ message }}</p>
+    <input v-model="message">
+    <button v-on:click="buttonClick">test</button>
+  </div>
+  <script type="text/javascript">
+    var myMixin1 = {
+      created: function () {
+        this.startMixin()
+      },
+      methods: {
+        startMixin: function () {
+          document.write("mixin" + "<br>")
+        },
+        calcValue1: function () {
+          document.write("myMixin1 calcValue" + "<br>")
+        }
+      }
+
+    }
+
+    var myMixin2 = {
+      created: function () {
+        this.startMixin()
+      },
+      methods: {
+        startMixin: function () {
+          document.write("mixin" + "<br>")
+        },
+        calcValue2: function () {
+          document.write("myMixin2 calcValue" + "<br>")
+        }
+      }
+
+    }
+    Vue.mixin({
+      created: function () {
+        var myOption = this.$options.myOption
+        if (myOption) {
+          document.write(myOption)
+        }
+      }
+    })
+
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        message: "1243"
+      },
+      myOption: 'hello!' + "<br>",
+      methods: {
+        buttonClick: function () {
+          document.write('buttonClick' + "<br>")
+          this.calcValue()
+          this.calcValue1()
+          this.calcValue2()
+        },
+        calcValue: function () {
+          document.write("calcValue" + "<br>")
+        }
+      },
+      //   mixins:[myMixin],
+      //     created: function(){
+      //         document.write("created mixin")
+      //     }
+      mixins: [myMixin1, myMixin2],
+      created: function () {
+        document.write('组件调用' + '<br>')
+      }
+    })
+
+
+
+
+
+    // var Component = Vue.extend({
+    //     mixins:[myMixin]
+    // })
+
+    // var component = new Component();
+
+  </script>
+
+</body>
+
+</html>

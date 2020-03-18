@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>test18</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="show">
+
+            <input v-model="message">
+        </div>
+
+        <p v-on:click="showText()">{{message}}</p>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                show: false,
+                message: "bianji"
+            },
+            methods: {
+                showText: function () {
+                    // alert(this.show)
+                    this.show = !this.show
+                }
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>

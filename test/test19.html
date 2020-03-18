@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>test19</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+</head>
+
+<body>
+    <form id="app">
+        <h1>service</h1>
+        <ul>
+            <li v-for="service in services" v-on:click="troggleActive(service)">
+                    {{service.name + "   " + formatPrice(service.price)}}
+            </li>
+
+        </ul>
+
+        <div>
+
+            total:<span>{{formatPrice(calc())}}</span>
+        </div>
+
+    </form>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                services:[{
+                    name:"s1",
+                    price:200,
+                    active:false
+                },{
+                    name:"s2",
+                    price:150,
+                    active:false
+                },{
+                    name:"s3",
+                    price:100,
+                    active:false
+                },{
+                    name:"s4",
+                    price:50,
+                    active:false
+                }]
+            },
+            methods:{
+                troggleActive:function(service){
+                    service.active = !service.active;
+                },
+
+                formatPrice:function(price){
+                    return "$" + price.toFixed(2)
+                },
+
+                calc:function(){
+                    var total = 0
+
+                    this.services.forEach(function(s){
+                        if(s.active){
+                            total +=s.price
+                        }
+                    })
+
+                    return total
+                }
+            
+            }
+        })
+
+
+
+    </script>
+
+</body>
+
+</html>

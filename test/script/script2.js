@@ -1,0 +1,19 @@
+document.write('execute script2')
+export var firstName = 'Michael'
+export var lastName = 'Jackson'
+export var year = 1958
+
+let myName = 'Tom'
+let myAge = 20
+let myfn = function () {
+  return 'My name is' + myName + "! I'm '" + myAge + 'years old.'
+}
+let myClass = class myClass {
+  static a = 'yeah!'
+}
+export {
+  myName,
+  myAge,
+  myfn,
+  myClass
+}

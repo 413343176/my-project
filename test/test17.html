@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>test17</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <nav>
+            <a href="#" v-on:click="makeActive('test1')">test1</a>
+            <a href="#" v-on:click="makeActive('test2')">test2</a>
+            <a href="#" v-on:click="makeActive('test3')">test3</a>
+        </nav>
+        你选择了 {{active}}
+
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                active: "test1"
+            },
+            methods: {
+                makeActive: function (item) {
+                    this.active = item;
+                }
+            }
+
+        })
+    </script>
+
+</body>
+
+</html>

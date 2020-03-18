@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>test25</title>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input v-model="inputVale"></input>
+    <button @click="clickSubmit">提交</button>
+    <ul>
+      <li v-for="(item, index) of list" v-bind:key="index" v-on:click="itemClick(index)">{{item}} {{index}}</li>
+    </ul>
+  </div>
+
+  <script type="application/javascript">
+    new Vue({
+      el: "#app",
+      data: {
+        inputVale: '',
+        list: []
+      },
+      methods: {
+        clickSubmit: function () {
+          //   alert(this.inputVale);
+          this.list.push(this.inputVale);
+          this.inputVale = '';
+        },
+        itemClick: function (index) {
+          // alert(index)
+          this.list.splice(index, 1);
+        }
+      }
+    })
+
+  </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>test25</title>
+  <script src="./vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    {{message}}
+    <component-a></component-a>
+  </div>
+  <script type="application/javascript">
+    var bus = new Vue({
+      methods: {
+        on: function (event, callback) {
+          this.$on(event, callback)
+        },
+        off: function (event, callback) {
+          this.$off(event, callback)
+        },
+        trigger: function (event, ...args) {
+          this.$emit(event, ...args)
+        }
+      }
+
+
+    });
+    Vue.component("component-a", {
+      template: '<button v-on:click="handleClick">事件</button>',
+      methods: {
+        handleClick: function () {
+          //传递到父组件
+          bus.trigger('on-message', "这是事件");
+        }
+      }
+    })
+
+
+    new Vue({
+      el: "#app",
+      data: {
+        message: ""
+      },
+      created: function () {
+        bus.$on('on-message', this.callback);
+      },
+      beforeDestroy: function () {
+        bus.$off('on-message', this.callback);
+      },
+      methods: {
+        callback: function (msg) {
+          this.message = msg
+        }
+      }
+
+
+    })
+
+  </script>
+
+</body>
+
+</html>
